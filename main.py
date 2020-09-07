@@ -25,10 +25,13 @@ def post_with_link():
         name = comment_element_having_name[i].text.split(" " + comment_element[i].text)[0]
         comment = comment_element[i].text
         print(name + ": " + comment)
+        if i == 5:
+            print("-----------------------------------------------------------------------------------")
+        else:
+            print("----------------------------")
 
 
-#
-#
+
 def post_img():
     driver.get(url)
     driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
@@ -48,6 +51,11 @@ def post_img():
         name = comment_element_having_name[i].text.split(" " + comment_element[i].text)[0]
         comment = comment_element[i].text
         print(name + ": " + comment)
+        if i == 5:
+            print("-----------------------------------------------------------------------------------")
+            print("-----------------------------------------------------------------------------------")
+        else:
+            print("----------------------------")
 
 
 def get_comment():
@@ -60,6 +68,7 @@ def get_comment():
     all_spans = driver.find_elements_by_xpath("//span[@class='timestampContent']")
 
     for index in range(5):
+
         print("Post " + str(index + 1))
 
         try:
