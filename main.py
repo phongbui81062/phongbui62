@@ -2,20 +2,19 @@ from selenium import webdriver
 import time
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-# CHROME_PATH = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
-# CHROMEDRIVER_PATH = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+
 WINDOW_SIZE = "1920,1080"
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
 chrome_options.add_argument("--log-level=3")
-# chrome_options.binary_location = CHROME_PATH
 
 
-url = 'https://www.facebook.com/tran.thanh.ne/'
+url =input("URL:" )
 path = "chromedriver.exe"
 options = webdriver.ChromeOptions()
 driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=chrome_options)
+# driver = webdriver.Chrome(ChromeDriverManager().install())
 
 
 def post_with_link():
@@ -40,13 +39,16 @@ def post_with_link():
     print("Number of Comment: " + comment_num)
     print("Number of Share: " + share_num)
     for i in range(6):
-        name = comment_element_having_name[i].text.split(" " + comment_element[i].text)[0]
-        comment = comment_element[i].text
-        print(name + ": " + comment)
-        if i == 5:
-            print("-----------------------------------------------------------------------------------")
-        else:
-            print("----------------------------")
+        try:
+            name = comment_element_having_name[i].text.split(" " + comment_element[i].text)[0]
+            comment = comment_element[i].text
+            print(name + ": " + comment)
+            if i == 5:
+                print("-----------------------------------------------------------------------------------")
+            else:
+                print("----------------------------")
+        except IndexError:
+            break
 
 
 def post_img(index):
@@ -84,14 +86,17 @@ def post_img(index):
     print("Number of Share: " + share_num)
     print("Title: " + title)
     for i in range(6):
-        name = comment_element_having_name[i].text.split(" " + comment_element[i].text)[0]
-        comment = comment_element[i].text
-        print(name + ": " + comment)
-        if i == 5:
-            print("-----------------------------------------------------------------------------------")
-            print("-----------------------------------------------------------------------------------")
-        else:
-            print("----------------------------")
+        try:
+            name = comment_element_having_name[i].text.split(" " + comment_element[i].text)[0]
+            comment = comment_element[i].text
+            print(name + ": " + comment)
+            if i == 5:
+                print("-----------------------------------------------------------------------------------")
+                print("-----------------------------------------------------------------------------------")
+            else:
+                print("----------------------------")
+        except IndexError:
+            break
 
 
 def get_comment():
