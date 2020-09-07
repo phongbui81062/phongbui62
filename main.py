@@ -8,6 +8,7 @@ options = webdriver.ChromeOptions()
 driver = webdriver.Chrome(ChromeDriverManager().install())
 index = 0
 
+
 def post_with_link():
     driver.find_element_by_css_selector('a#expanding_cta_close_button').click()
     title = driver.find_elements_by_css_selector('div p')[0].text
